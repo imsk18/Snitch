@@ -3,10 +3,12 @@ import {body,validationResult} from "express-validator";
 
 
 function validateRequest(req,res,next){
-    const error = validationResult(res)
-    if(!error){
+    const errors = validationResult(res)
+    if(!errors.isEmpty()){
+        res.status(400).json({errors:errors.array()})
         
     }
+    next()
 
 }
 
@@ -25,6 +27,8 @@ export const validateRegisterUser = [
     body("password")
     .isLength({min:6}).withMessage("password must be at least 6 character log"),
     body("fullname")
-    .isLength({min:3}).withMessage("fullname must be at least 3 character long")
+    .isLength({min:3}).withMessage("fullname must be at least 3 character long"),
+
+    validateRequest
 
 ]
