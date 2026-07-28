@@ -1,0 +1,30 @@
+import {body,validationResult} from "express-validator";
+
+
+
+function validateRequest(req,res,next){
+    const error = validationResult(res)
+    if(!error){
+        
+    }
+
+}
+
+
+
+
+
+export const validateRegisterUser = [
+    body("email")
+    .isEmail().withMessage("Invalid email formate"),
+    body("contact")
+    .notEmpty().withMessage("contact is required")
+    // .isLength({min:10,max:10})
+    .matches(/^\d{10}$/).withMessage("contact must be a 10-digit number"),
+
+    body("password")
+    .isLength({min:6}).withMessage("password must be at least 6 character log"),
+    body("fullname")
+    .isLength({min:3}).withMessage("fullname must be at least 3 character long")
+
+]
