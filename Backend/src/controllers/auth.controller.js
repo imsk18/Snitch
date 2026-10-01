@@ -93,3 +93,14 @@ const isMatch = await user.comparePassword(password)
         res.status(500).json({message:"server error !"})
     }   
 }
+
+export const googleCallback = async (req, res) => {
+    try {
+      const user = req.user;    
+
+      res.redirect("http://localhost:5173/");
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server error" });
+    }
+}
