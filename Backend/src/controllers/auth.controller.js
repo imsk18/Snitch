@@ -27,7 +27,7 @@ res.cookie("token",token)
                 fullname:user.fullname,
                 role:user.role
             },
-            token
+            
         })
 
 }
@@ -37,7 +37,7 @@ res.cookie("token",token)
 
 
 export const  register = async (req,res)=>{
-    const {email,contact,fullname,password} = req.body
+    const {email,contact,fullname,password,isSeller} = req.body
 
     try{
         const isUserExist = await userModel.findOne({
@@ -55,7 +55,8 @@ export const  register = async (req,res)=>{
             email,
             contact,
             fullname,
-            password
+            password,
+            role: isSeller?"seller":"buyer"
 
         })
 
@@ -71,4 +72,24 @@ export const  register = async (req,res)=>{
         
 
     }
+}
+
+export async function login(req,res){
+    const {email,password} = req.body
+
+    try{
+        const user = await userModel.findOne({email});
+        if(!user){
+            return res.status(400).json({message:"Invalid credentials"})
+        }
+const isMatch = await user.comparePassword(password)
+        if(!isMatch){
+            return res.status(400).json({message:"Invalid credentials"})
+        }   
+
+        await sendTokenResponse(user,res,"user logged in successfully")
+    }catch(error){
+        console.log(error);
+        res.status(500).json({message:"server error !"})
+    }   
 }

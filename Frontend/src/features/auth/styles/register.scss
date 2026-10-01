@@ -1,0 +1,487 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap");
+
+$cream: #fbf9f6;
+$black: #191a18;
+$gold: #c9a96e;
+$border: #d8d0c6;
+$text-muted: #81766b;
+
+* {
+  box-sizing: border-box;
+}
+
+.register-page {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  background: $cream;
+  color: $black;
+  font-family: "Inter", sans-serif;
+}
+
+// ========================================
+// LEFT IMAGE
+// ========================================
+
+.register-visual {
+  position: relative;
+  width: 45%;
+  height: 100vh;
+  overflow: hidden;
+  background: #eee;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    filter: brightness(0.96);
+    transition: transform 1s ease;
+  }
+
+  &:hover img {
+    transform: scale(1.02);
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+
+    background:
+      linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.05),
+        transparent 30%
+      ),
+      linear-gradient(
+        to top,
+        rgba(15, 14, 12, 0.65),
+        transparent 55%
+      );
+  }
+
+  &__top {
+    position: absolute;
+    top: 32px;
+    left: 70px;
+    z-index: 2;
+
+    span {
+      color: $gold;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 15px;
+      letter-spacing: 0.4em;
+    }
+  }
+
+  &__bottom {
+    position: absolute;
+    left: 70px;
+    bottom: 60px;
+    z-index: 2;
+    max-width: 450px;
+
+    .eyebrow {
+      margin: 0 0 15px;
+      color: $gold;
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      font-weight: 500;
+    }
+
+    h2 {
+      margin: 0;
+      color: #fff;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(55px, 5vw, 78px);
+      line-height: 0.92;
+      font-weight: 300;
+
+      em {
+        font-weight: 300;
+      }
+    }
+
+    .description {
+      max-width: 330px;
+      margin-top: 25px;
+      color: rgba(255, 255, 255, 0.65);
+      font-size: 12px;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+  }
+}
+
+// ========================================
+// RIGHT FORM
+// ========================================
+
+.register-form {
+  width: 55%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 70px 80px;
+  background: $cream;
+
+  &__inner {
+    width: 100%;
+    max-width: 430px;
+  }
+
+  &__heading {
+    margin-bottom: 48px;
+
+    > span {
+      display: block;
+      margin-bottom: 22px;
+      color: $gold;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+    }
+
+    h1 {
+      margin: 0;
+      color: $black;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(55px, 5vw, 70px);
+      font-weight: 300;
+      line-height: 0.95;
+    }
+  }
+}
+
+// ========================================
+// MOBILE BRAND
+// ========================================
+
+.mobile-brand {
+  display: none;
+}
+
+// ========================================
+// FORM
+// ========================================
+
+.register-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  label {
+    color: #74695f;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  input {
+    width: 100%;
+    height: 40px;
+    padding: 0;
+    border: 0;
+    border-bottom: 1px solid $border;
+    outline: none;
+    background: transparent;
+    color: $black;
+    font-family: "Inter", sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    transition: border-color 0.3s ease;
+
+    &::placeholder {
+      color: #bdb5ad;
+      font-weight: 300;
+    }
+
+    &:focus {
+      border-color: $gold;
+    }
+  }
+}
+
+// ========================================
+// SELLER
+// ========================================
+
+.seller-option {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: fit-content;
+  cursor: pointer;
+  color: #766b62;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+
+  input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .custom-checkbox {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid $border;
+    transition: all 0.25s ease;
+
+    span {
+      color: #fff;
+      font-size: 11px;
+      opacity: 0;
+      transform: scale(0.5);
+      transition: all 0.2s ease;
+    }
+  }
+
+  input:checked + .custom-checkbox {
+    border-color: $gold;
+    background: $gold;
+
+    span {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}
+
+// ========================================
+// SIGN UP
+// ========================================
+
+.signup-btn {
+  position: relative;
+  width: 100%;
+  height: 54px;
+  margin-top: 2px;
+  border: 1px solid $black;
+  background: $black;
+  color: #fff;
+  cursor: pointer;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: "Inter", sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+
+  .arrow {
+    position: absolute;
+    right: 22px;
+    font-size: 17px;
+    font-weight: 300;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover {
+    background: $gold;
+    border-color: $gold;
+    color: $black;
+
+    .arrow {
+      transform: translate(3px, -3px);
+    }
+  }
+}
+
+// ========================================
+// DIVIDER
+// ========================================
+
+.or-divider {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  span {
+    flex: 1;
+    height: 1px;
+    background: #e5e0da;
+  }
+
+  p {
+    margin: 0;
+    color: #b2aaa2;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+  }
+}
+
+// ========================================
+// LOGIN
+// ========================================
+
+.login-link {
+  margin: 0;
+  color: #aaa19a;
+  font-size: 10px;
+  text-align: center;
+
+  a {
+    color: #6e655d;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: $gold;
+    }
+  }
+}
+
+// ========================================
+// TABLET
+// ========================================
+
+@media (max-width: 1000px) {
+  .register-visual {
+    width: 42%;
+
+    &__top {
+      left: 40px;
+    }
+
+    &__bottom {
+      left: 40px;
+      bottom: 40px;
+
+      h2 {
+        font-size: 55px;
+      }
+    }
+  }
+
+  .register-form {
+    width: 58%;
+    padding: 50px 50px;
+  }
+}
+
+// ========================================
+// MOBILE
+// ========================================
+
+@media (max-width: 768px) {
+  .register-page {
+    min-height: 100svh;
+  }
+
+  .register-visual {
+    display: none;
+  }
+
+  .register-form {
+    width: 100%;
+    min-height: 100svh;
+    padding: 35px 25px 50px;
+    align-items: flex-start;
+
+    &__inner {
+      max-width: 500px;
+      margin: auto;
+    }
+
+    &__heading {
+      margin-bottom: 42px;
+
+      > span {
+        margin-bottom: 16px;
+        font-size: 9px;
+      }
+
+      h1 {
+        font-size: 52px;
+        line-height: 0.95;
+      }
+    }
+  }
+
+  .mobile-brand {
+    display: block;
+    margin-bottom: 55px;
+
+    color: $gold;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 15px;
+    letter-spacing: 0.4em;
+  }
+}
+
+// ========================================
+// SMALL MOBILE
+// ========================================
+
+@media (max-width: 480px) {
+  .register-form {
+    padding: 28px 20px 40px;
+
+    &__heading {
+      margin-bottom: 38px;
+
+      h1 {
+        font-size: 45px;
+      }
+    }
+  }
+
+  .mobile-brand {
+    margin-bottom: 45px;
+  }
+
+  .register-form form {
+    gap: 27px;
+  }
+
+  .form-field {
+    input {
+      height: 38px;
+    }
+  }
+
+  .signup-btn {
+    height: 52px;
+  }
+}
+
+// ========================================
+// VERY SMALL MOBILE
+// ========================================
+
+@media (max-width: 360px) {
+  .register-form {
+    padding-inline: 17px;
+
+    &__heading h1 {
+      font-size: 40px;
+    }
+  }
+
+  .mobile-brand {
+    margin-bottom: 38px;
+  }
+}
