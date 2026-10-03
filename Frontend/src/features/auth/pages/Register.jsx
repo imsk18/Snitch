@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useAuth } from "../hook/useAuth";
 import { useNavigate } from "react-router";
 import "../styles/register.scss";
+import ContinueWithGoogle from "../components/ContinueWithGoogle";
 
 const Register = () => {
   const {handleRegister} = useAuth();
@@ -173,7 +174,7 @@ navigate("/");
             </div>
 
             {/* <ContinueWithGoogle /> */}
-             <a href="/api/auth/google">continue with google</a>
+             <ContinueWithGoogle/>
 
             <p className="login-link">
               Already have an account?
