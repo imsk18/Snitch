@@ -37,17 +37,39 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
   e.preventDefault();
+  try{
 
-  const success = await handleLogin({
+  const user = await handleLogin({
     email: formData.email,
     password: formData.password,
   });
 
-  console.log("success:", success);
-
-  if (success) {
-    navigate("/");
+  if(user.role === "buyer"){
+    navigate("/")
+  }else if(user.role === "seller"){
+    navigate("/seller/dashboard")
   }
+    
+  }catch(err){
+    console.log("login failed", err);
+  }
+
+
+
+
+//   const user = await handleLogin({
+//   email: formData.email,
+//   password: formData.password,
+// });
+
+// console.log("LOGIN USER:", user);
+// console.log("ROLE:", user?.role);
+
+
+  
+  
+
+
 };
   return (
     <main className="login-page">

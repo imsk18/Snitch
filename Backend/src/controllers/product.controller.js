@@ -48,6 +48,8 @@ export async function createProduct(req,res){
 }
 }
 
+
+
 export const getSellerProducts = async(req,res)=>{
     const seller = req.user
     // console.log(seller);
@@ -64,3 +66,19 @@ export const getSellerProducts = async(req,res)=>{
     })
 }
 
+export async function getAllProducts(req,res){
+    try{
+        const products = await productModel.find();
+        res.status(200).json({
+            message:"All products fetched successfully",
+            success:true,
+            products
+        })
+    }catch(err){
+        return res.status(500).json({
+            message:err.message,
+            success:false
+        })
+    }
+
+}
